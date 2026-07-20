@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/**
+ * TOKEN SCAFFOLD — placeholder values.
+ *
+ * Real tokens are deferred until brand guidelines land (PRD §7). These are
+ * deliberately plain so nothing here reads as a design decision that was made.
+ * When the brand arrives, replace the values below; components reference tokens
+ * rather than hard-coded values, so the swap stays contained to this file.
+ */
+
+:root {
+  --background: #ffffff;
+  --foreground: #16181d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Numeric/countdown face. Tabular figures are non-negotiable — proportional
+     digits cause per-second layout shift on the hero (PRD §7). */
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Accessibility floor from the checkout design brief §8: visible keyboard focus. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,13 +1,18 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 
-type Status = "idle" | "loading" | "success" | "error";
+type Status = "idle" | "loading" | "error";
 
 /**
  * Posts to /api/waitlist (MailerLite). `source` tags which section the
  * signup came from — useful once there's more than one entry point (hero,
- * founding CTA, switcher link) to see what's converting.
+ * founding CTA) to see what's converting.
+ *
+ * On success, navigates to /thank-you rather than showing an inline message —
+ * a full page gives the reassurance copy room to actually land, instead of a
+ * one-line swap in place of the form.
  */
 export function WaitlistForm({
   source,
@@ -18,6 +23,7 @@ export function WaitlistForm({
   buttonLabel: string;
   className?: string;
 }) {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState<string | null>(null);
@@ -34,29 +40,19 @@ export function WaitlistForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, source }),
       });
-      const data = (await res.json()) as { message: string };
 
       if (!res.ok) {
+        const data = (await res.json()) as { message: string };
         setStatus("error");
         setMessage(data.message);
         return;
       }
 
-      setStatus("success");
-      setMessage(data.message);
-      setEmail("");
+      router.push("/thank-you");
     } catch {
       setStatus("error");
       setMessage("Something went wrong. Try again.");
     }
-  }
-
-  if (status === "success") {
-    return (
-      <p className={`text-serif text-lg text-ink ${className}`} role="status">
-        {message}
-      </p>
-    );
   }
 
   return (

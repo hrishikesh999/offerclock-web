@@ -11,10 +11,6 @@ export const hero = {
   headlineEnd: ".",
   subhead:
     "OfferClock is the only checkout that enforces every lead's deadline at the payment page itself — when time runs out, the deal is actually gone. No Zaps, no patchwork, no bluffs.",
-  quietLinkLabel: "Switching from ThriveCart or Deadline Funnel? Start here.",
-  // Points at the switcher offer page once it exists; until then the waitlist
-  // with a source tag so the click isn't wasted (raised in mockup review).
-  quietLinkHref: "/vs/thrivecart",
   microcopy: "Founder pricing locked for life · Limited seats · Works with Thinkific, Teachable, ActiveCampaign + Kit",
 };
 
@@ -75,9 +71,9 @@ export const features: { icon: IconName; title: string; body: string }[] = [
   { icon: "shield", title: "Stripe-secured payments", body: "cards and wallets; card data never touches our servers" },
 ];
 
+// Button label lives in lib/cta.ts (primaryCta.label) — one CTA string site-wide.
 export const founding = {
   header: "Become a founding member — special pricing, locked for life",
   body: "Join the waiting list to qualify for founder pricing and fully done-for-you setup. Seats are limited — when the founding cohort is full, that pricing never comes back.",
-  buttonLabel: "Join the waiting list",
   microcopy: "Founder pricing locks at signup and never rises — enforced by the same engine that locks your buyers' deadlines.",
 };

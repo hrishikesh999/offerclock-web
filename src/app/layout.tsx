@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -16,12 +16,16 @@ const inter = Inter({
   display: "swap",
 });
 
-// Regular weight only, per brand-guidelines.md §2 — Instrument Serif is never bolded.
-const instrumentSerif = Instrument_Serif({
+// Headline display face. Swapped from Instrument Serif (too narrow at display
+// sizes per founder review) for Fraunces — same "never bolded, size carries
+// the weight" rule from brand-guidelines.md §2, but a wider, less condensed
+// letterform. Fraunces ships as a variable font so a mid weight (500) reads
+// confident without touching bold.
+const displaySerif = Fraunces({
   subsets: ["latin"],
-  weight: "400",
+  weight: "500",
   style: ["normal", "italic"],
-  variable: "--font-instrument",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -63,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${inter.variable} ${displaySerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-paper text-ink">
         <a

@@ -7,9 +7,9 @@ import { type NextRequest, NextResponse } from "next/server";
  * Requires env: MAILERLITE_API_KEY, MAILERLITE_GROUP_ID.
  * MailerLite API docs: https://developers.mailerlite.com/docs/subscribers.html
  *
- * The `source` and `platform_request` custom fields must exist on the
- * MailerLite account before first use (Subscribers → Custom fields) — the API
- * silently drops fields it doesn't recognize rather than erroring.
+ * The `source` custom field must exist on the MailerLite account before first
+ * use (Subscribers → Custom fields) — the API silently drops fields it
+ * doesn't recognize rather than erroring.
  */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "Waitlist is not configured yet" }, { status: 500 });
   }
 
-  let body: { email?: unknown; source?: unknown; platform?: unknown };
+  let body: { email?: unknown; source?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -49,16 +49,10 @@ export async function POST(req: NextRequest) {
 
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const source = typeof body.source === "string" ? body.source.slice(0, 64) : undefined;
-  // Set on the footer's "put my platform on the roadmap" form only.
-  const platform = typeof body.platform === "string" ? body.platform.slice(0, 64) : undefined;
 
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ message: "Enter a valid email address" }, { status: 400 });
   }
-
-  const fields: Record<string, string> = {};
-  if (source) fields.source = source;
-  if (platform) fields.platform_request = platform;
 
   const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
     method: "POST",
@@ -70,7 +64,7 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({
       email,
       groups: [groupId],
-      fields: Object.keys(fields).length ? fields : undefined,
+      fields: source ? { source } : undefined,
     }),
   });
 

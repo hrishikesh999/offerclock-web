@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { RoadmapForm } from "@/components/RoadmapForm";
 import { foundingSectionId } from "@/lib/cta";
 
 export function SiteFooter() {
@@ -24,9 +23,6 @@ export function SiteFooter() {
               <li>
                 <a href={`#${foundingSectionId}`}>Founding member waitlist</a>
               </li>
-              <li>
-                <Link href="/vs/thrivecart">Switching from ThriveCart or Deadline Funnel?</Link>
-              </li>
             </ul>
           </div>
 
@@ -35,7 +31,6 @@ export function SiteFooter() {
             <p className="text-[15px]" style={{ color: "var(--slate)" }}>
               Works with Thinkific, Teachable, ActiveCampaign + Kit.
             </p>
-            <RoadmapForm />
           </div>
 
           <div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { founding } from "@/content/home";
+import { primaryCta } from "@/lib/cta";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -26,7 +27,7 @@ export default function PricingPage() {
         <p className="mt-6 text-lg" style={{ color: "var(--slate)" }}>
           {founding.body}
         </p>
-        <WaitlistForm source="pricing" buttonLabel={founding.buttonLabel} className="mt-9 flex justify-center" />
+        <WaitlistForm source="pricing" buttonLabel={primaryCta.label} className="mt-9 flex justify-center" />
         <p className="mx-auto mt-5 max-w-[480px] text-[13px]" style={{ color: "var(--slate)" }}>
           {founding.microcopy}
         </p>

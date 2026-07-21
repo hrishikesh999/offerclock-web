@@ -2,12 +2,7 @@ import Link from "next/link";
 
 import { primaryCta } from "@/lib/cta";
 
-const nav = [
-  { href: "/#how", label: "How it works" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
-];
-
+/** Single-page site — header is just the wordmark and the one CTA, no nav links. */
 export function SiteHeader() {
   return (
     <header
@@ -16,18 +11,11 @@ export function SiteHeader() {
     >
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-[1120px] flex-wrap items-center gap-x-7 gap-y-2 px-6 py-4"
+        className="mx-auto flex max-w-[1120px] items-center gap-x-7 px-6 py-4"
       >
         <Link href="/" className="text-serif text-[22px]">
           OfferClock
         </Link>
-        <ul className="ml-1 flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px]" style={{ color: "var(--slate)" }}>
-          {nav.map((item) => (
-            <li key={item.href}>
-              <Link href={item.href}>{item.label}</Link>
-            </li>
-          ))}
-        </ul>
         <a href={primaryCta.href} className="btn-pill btn-sm ml-auto">
           {primaryCta.label}
         </a>

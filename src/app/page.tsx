@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { CheckoutPanel } from "@/components/CheckoutPanel";
 import { icons } from "@/components/icons";
+import { PositioningIllustration } from "@/components/PositioningIllustration";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { features, founding, hero, pillars, positioning, stackDiagram } from "@/content/home";
-import { foundingSectionId } from "@/lib/cta";
+import { foundingSectionId, primaryCta } from "@/lib/cta";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -40,13 +40,10 @@ export default function HomePage() {
 
           <WaitlistForm
             source="hero"
-            buttonLabel="Join the founding member waitlist"
+            buttonLabel={primaryCta.label}
             className="mx-auto mt-9 flex justify-center"
           />
 
-          <Link href={hero.quietLinkHref} className="mt-5 inline-block text-[15px]">
-            {hero.quietLinkLabel}
-          </Link>
           <p className="mx-auto mt-5 max-w-[560px] text-[13px]" style={{ color: "var(--slate)" }}>
             {hero.microcopy}
           </p>
@@ -58,11 +55,14 @@ export default function HomePage() {
       {/* 2 — Positioning */}
       <section className="sec" style={{ background: "var(--card)" }} id="how">
         <div className="mx-auto max-w-[1120px] px-6">
-          <div className="max-w-[720px]">
-            <h2 className="text-display">{positioning.header}</h2>
-            <p className="mt-6 max-w-[640px] text-lg" style={{ color: "var(--slate)" }}>
-              {positioning.body}
-            </p>
+          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+            <div>
+              <h2 className="text-display">{positioning.header}</h2>
+              <p className="mt-6 max-w-[560px] text-lg" style={{ color: "var(--slate)" }}>
+                {positioning.body}
+              </p>
+            </div>
+            <PositioningIllustration />
           </div>
         </div>
       </section>
@@ -140,7 +140,7 @@ export default function HomePage() {
           </p>
           <WaitlistForm
             source="founding"
-            buttonLabel={founding.buttonLabel}
+            buttonLabel={primaryCta.label}
             className="mx-auto mt-8 flex justify-center"
           />
           <p className="mx-auto mt-5 max-w-[520px] text-[13px]" style={{ color: "var(--slate)" }}>

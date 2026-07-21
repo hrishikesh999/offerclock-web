@@ -64,11 +64,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Type scale — brand-guidelines.md §2. Serif is never bolded; size carries weight. */
+/* Type scale — brand-guidelines.md §2. Ibarra Real Nova ships at 600 only
+   (founder-picked weight); every serif use matches it so the browser never
+   synthesizes a weight it doesn't have. */
 .text-hero,
 .text-display {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
@@ -82,7 +84,7 @@ body {
 }
 .text-serif {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 600;
 }
 .eyebrow {
   font-size: 13px;

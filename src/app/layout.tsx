@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Ibarra_Real_Nova, Inter } from "next/font/google";
 
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -16,14 +16,13 @@ const inter = Inter({
   display: "swap",
 });
 
-// Headline display face. Swapped from Instrument Serif (too narrow at display
-// sizes per founder review) for Fraunces — same "never bolded, size carries
-// the weight" rule from brand-guidelines.md §2, but a wider, less condensed
-// letterform. Fraunces ships as a variable font so a mid weight (500) reads
-// confident without touching bold.
-const displaySerif = Fraunces({
+// Headline display face — Ibarra Real Nova at 600, founder-picked 2026-07-21
+// from a six-serif comparison (Instrument Serif and Fraunces both rejected as
+// too narrow at display sizes). Wide, moderate-contrast letterforms with a
+// distinctive italic used for the hero emphasis and diagram annotations.
+const displaySerif = Ibarra_Real_Nova({
   subsets: ["latin"],
-  weight: "500",
+  weight: "600",
   style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",

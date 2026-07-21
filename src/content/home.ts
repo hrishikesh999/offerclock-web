@@ -9,8 +9,9 @@ export const hero = {
   headline: "Turn more of your traffic into ",
   headlineAccent: "students",
   headlineEnd: ".",
+  // Updated per founder 2026-07-21 (supersedes the v2 copy doc's longer version).
   subhead:
-    "OfferClock is the only checkout that enforces every lead's deadline at the payment page itself — when time runs out, the deal is actually gone. No Zaps, no patchwork, no bluffs.",
+    "OfferClock is the only checkout platform that enforces every lead's deadline at the payment page. No Zaps, no patchwork, no bluffs.",
   microcopy: "Founder pricing locked for life · Limited seats · Works with Thinkific, Teachable, ActiveCampaign + Kit",
 };
 

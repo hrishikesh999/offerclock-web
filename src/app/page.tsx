@@ -93,20 +93,22 @@ export default function HomePage() {
       {/* 4 — Before / after diagram */}
       <section className="sec" style={{ background: "var(--card)" }}>
         <div className="mx-auto max-w-[1120px] px-6">
-          <h2 className="text-display">{stackDiagram.header}</h2>
+          <h2 className="text-display mx-auto text-center">{stackDiagram.header}</h2>
 
-          <StackRow
-            label={stackDiagram.before.label}
-            nodes={stackDiagram.before.nodes}
-            annotation={stackDiagram.before.annotation}
-          />
-          <StackRow
-            label={stackDiagram.after.label}
-            nodes={stackDiagram.after.nodes}
-            annotation={stackDiagram.after.annotation}
-            highlightNode="OfferClock"
-            good
-          />
+          <div className="mt-4 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-14">
+            <StackRow
+              label={stackDiagram.before.label}
+              nodes={stackDiagram.before.nodes}
+              annotation={stackDiagram.before.annotation}
+            />
+            <StackRow
+              label={stackDiagram.after.label}
+              nodes={stackDiagram.after.nodes}
+              annotation={stackDiagram.after.annotation}
+              highlightNode="OfferClock"
+              good
+            />
+          </div>
         </div>
       </section>
 
@@ -166,7 +168,7 @@ function StackRow({
   good?: boolean;
 }) {
   return (
-    <div className="mt-11 first:mt-11">
+    <div className="mt-7">
       <span className="eyebrow" style={good ? { color: "var(--accent)" } : undefined}>
         {label}
       </span>

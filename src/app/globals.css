@@ -1,38 +1,159 @@
 @import "tailwindcss";
 
 /**
- * TOKEN SCAFFOLD — placeholder values.
- *
- * Real tokens are deferred until brand guidelines land (PRD §7). These are
- * deliberately plain so nothing here reads as a design decision that was made.
- * When the brand arrives, replace the values below; components reference tokens
- * rather than hard-coded values, so the swap stays contained to this file.
+ * Brand tokens — verbatim from brand-guidelines.md §3.
+ * Light is canonical; dark mirrors the app's dark tokens (accent lightens,
+ * paper goes true black). Components consume tokens only — never raw hex —
+ * so a brand change stays contained to this block.
  */
-
 :root {
-  --background: #ffffff;
-  --foreground: #16181d;
+  --ink: #1d1d1f;
+  --slate: #57575c;
+  --paper: #f5f5f7;
+  --card: #ffffff;
+  --rule: #d2d2d7;
+  --accent: #9a5a0d;
+  --accent-btn: #a85f12;
+  --accent-wash: #fdf3e6;
+  --good: #248a3d;
+  --bad: #d70015;
+  --btn-fg: #ffffff;
+  --shadow-panel: 0 1px 2px rgba(29, 29, 31, 0.04), 0 8px 24px rgba(29, 29, 31, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f5f5f7;
+    --slate: #a1a1a6;
+    --paper: #000000;
+    --card: #1c1c1e;
+    --rule: #3a3a3c;
+    --accent: #f0a63f;
+    --accent-btn: #f0a63f;
+    --accent-wash: #271c0d;
+    --good: #30d158;
+    --bad: #ff453a;
+    --btn-fg: #1d1d1f;
+    --shadow-panel: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  /* Numeric/countdown face. Tabular figures are non-negotiable — proportional
-     digits cause per-second layout shift on the hero (PRD §7). */
+  --color-ink: var(--ink);
+  --color-slate: var(--slate);
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-btn: var(--accent-btn);
+  --color-wash: var(--accent-wash);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+  --color-btn-fg: var(--btn-fg);
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Accessibility floor from the checkout design brief §8: visible keyboard focus. */
+/* Type scale — brand-guidelines.md §2. Serif is never bolded; size carries weight. */
+.text-hero,
+.text-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.text-hero {
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 1.02;
+}
+.text-display {
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.08;
+}
+.text-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+.eyebrow {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate);
+  font-weight: 500;
+}
+
+/* Section rhythm — brand-guidelines.md §4 */
+.sec {
+  padding-top: clamp(64px, 9vw, 128px);
+  padding-bottom: clamp(64px, 9vw, 128px);
+}
+
+/* Buttons — brand-guidelines.md §5: pill, one primary per section */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-btn);
+  color: var(--btn-fg);
+  border: none;
+  border-radius: 980px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 15px 28px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter 150ms ease;
+}
+.btn-pill:hover {
+  filter: brightness(0.94);
+}
+.btn-pill.btn-sm {
+  font-size: 14px;
+  padding: 9px 18px;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+}
+.field-pill {
+  flex: 1;
+  min-width: 0;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 980px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  padding: 15px 22px;
+}
+.field-pill::placeholder {
+  color: var(--slate);
+}
+
+/* Checkout panel crop — fades mid-form to read as "cropped tight" (brand §6) */
+.panel-fade {
+  -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent 98%);
+  mask-image: linear-gradient(to bottom, black 62%, transparent 98%);
+}
+
+/* Accessibility floor — PRD §7 / checkout design brief §8 */
 :focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {

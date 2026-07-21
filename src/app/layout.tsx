@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter, Instrument_Serif } from "next/font/google";
 
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -7,6 +8,22 @@ import { graph, organizationSchema, websiteSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 import "./globals.css";
+
+// Self-hosted via next/font — no request to Google at runtime, no layout shift.
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+// Regular weight only, per brand-guidelines.md §2 — Instrument Serif is never bolded.
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   // metadataBase makes every relative canonical / og:image resolve absolutely.
@@ -44,8 +61,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="flex min-h-full flex-col">
+    <html
+      lang="en"
+      className={`${inter.variable} ${instrumentSerif.variable} h-full antialiased`}
+    >
+      <body className="flex min-h-full flex-col bg-paper text-ink">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:text-black"

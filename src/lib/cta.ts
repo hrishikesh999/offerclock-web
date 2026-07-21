@@ -1,19 +1,19 @@
 /**
  * The site's conversion action, defined in exactly one place.
  *
- * OPEN ITEM (raised in PRD review): the PRD specifies no conversion destination.
- * There is no signup route, no contact form, and email capture is a v1 non-goal —
- * yet §11's leading metric is "engagements that convert to a conversation".
- * Pricing is "free while in early access" and hand-held, so the action is a
- * manual conversation. Until the founder picks the destination, this points at
- * a mailto so no page ships a dead CTA.
+ * Approved 2026-07-20: waitlist → MailerLite via a custom form + API route
+ * (see /api/waitlist and components/WaitlistForm). Every CTA that isn't the
+ * form itself scrolls to the founding-member section's form.
  *
- * Replace with the real destination (booking link, contact route, or app signup)
- * and every CTA on the site follows.
+ * STILL OPEN: the copy doc offers two labels ("Join the founding member
+ * waitlist" in the hero, "Join the waiting list" in §6) and flags picking one
+ * as a to-do — brand-guidelines.md §5 requires one CTA verb site-wide. Using
+ * the hero's fuller phrasing as the default until the founder picks.
  */
 export const primaryCta = {
-  label: "Get early access",
-  href: "mailto:hello@getofferclock.com?subject=OfferClock%20early%20access",
-  /** True once a real destination is wired. Gates nothing yet; used for review. */
-  confirmed: false,
+  label: "Join the founding member waitlist",
+  /** Anchor to the waitlist form in the founding-member section. */
+  href: "#founding",
 } as const;
+
+export const foundingSectionId = "founding";

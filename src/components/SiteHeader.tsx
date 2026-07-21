@@ -2,35 +2,35 @@ import Link from "next/link";
 
 import { primaryCta } from "@/lib/cta";
 
-/**
- * Structural only — visual design deferred until brand guidelines land (PRD §7).
- * Nav is a real <nav> with a real landmark label so crawlers and screen readers
- * both get an unambiguous site structure.
- */
 const nav = [
-  { href: "/vs/thrivecart", label: "vs ThriveCart" },
-  { href: "/vs/deadline-funnel", label: "vs Deadline Funnel" },
+  { href: "/#how", label: "How it works" },
   { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },
 ];
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-black/10">
-      <nav aria-label="Primary" className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-5 py-4">
-        <Link href="/" className="font-medium">
+    <header
+      className="sticky top-0 z-10 border-b backdrop-blur-md"
+      style={{ borderColor: "var(--rule)", background: "color-mix(in srgb, var(--paper) 88%, transparent)" }}
+    >
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex max-w-[1120px] flex-wrap items-center gap-x-7 gap-y-2 px-6 py-4"
+      >
+        <Link href="/" className="text-serif text-[22px]">
           OfferClock
         </Link>
-        <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <ul className="ml-1 flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px]" style={{ color: "var(--slate)" }}>
           {nav.map((item) => (
             <li key={item.href}>
               <Link href={item.href}>{item.label}</Link>
             </li>
           ))}
         </ul>
-        <div className="ms-auto text-sm">
-          <a href={primaryCta.href}>{primaryCta.label}</a>
-        </div>
+        <a href={primaryCta.href} className="btn-pill btn-sm ml-auto">
+          {primaryCta.label}
+        </a>
       </nav>
     </header>
   );

@@ -11,16 +11,16 @@ export const site = {
    * Override per-environment so preview deploys never emit production canonicals.
    */
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://getofferclock.com").replace(/\/$/, ""),
-  /** Used as the default og:title suffix and in Organization structured data. */
-  tagline: "The deadline layer for Thinkific creators",
+  /** Hero headline doubles as the brand tagline (copy doc §1, locked v2). */
+  tagline: "Turn more of your traffic into students",
   /**
-   * TODO(copy): pending founder-supplied content. Must comply with
-   * product-description-july-18-26.md §7 — no results, no case studies,
-   * no landing-page-builder claim, no platform claims beyond Thinkific +
-   * ActiveCampaign, no payment plans, no Apple Pay until domain association ships.
+   * Claims discipline: copy source of truth is offerclock-homepage-copy.md (v2).
+   * Teachable + Kit claims founder-verified live 2026-07-20. Still forbidden:
+   * customer results/testimonials, payment plans, Apple Pay by name ("wallets"
+   * is the approved wording), specific seat counts.
    */
   description:
-    "OfferClock enforces sales deadlines at checkout, not just on the page. Built for Thinkific creators.",
+    "OfferClock is the only checkout that enforces every lead's deadline at the payment page itself — when time runs out, the deal is actually gone.",
   locale: "en_US",
 } as const;
 

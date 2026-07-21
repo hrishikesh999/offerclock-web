@@ -8,7 +8,7 @@ import type { IconName } from "@/components/icons";
 export const hero = {
   headline: "Turn more of your traffic into ",
   headlineAccent: "students",
-  headlineEnd: ".",
+  headlineEnd: "",
   // Updated per founder 2026-07-21 (supersedes the v2 copy doc's longer version).
   subhead:
     "OfferClock is the only checkout platform that enforces every lead's deadline at the payment page. No Zaps, no patchwork, no bluffs.",
@@ -74,7 +74,7 @@ export const features: { icon: IconName; title: string; body: string }[] = [
 
 // Button label lives in lib/cta.ts (primaryCta.label) — one CTA string site-wide.
 export const founding = {
-  header: "Become a founding member — special pricing, locked for life",
+  header: "Join waitlist - get special pricing, locked for life",
   body: "Join the waiting list to qualify for founder pricing and fully done-for-you setup. Seats are limited — when the founding cohort is full, that pricing never comes back.",
   microcopy: "Founder pricing locks at signup and never rises — enforced by the same engine that locks your buyers' deadlines.",
 };
